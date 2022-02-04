@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "tippy.js": "^6.3.7"
+  },
+  "type": "module"
+}
