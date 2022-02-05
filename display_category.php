@@ -131,7 +131,7 @@ $result = mysqli_query($con, $sql);
 						<td class="align-middle"><img src="./product_images/categories/<?php echo $row['product_image']?>" height="50" width="50"></td>
 						<td class="align-middle"><?php echo $row['product_name'] ?></td>
 						<td class="align-middle"><?php echo $row['product_price'] ?></td>
-						<td class="align-middle"><a href="display_category.php?action=edit&id=<?php echo $row['id']?>" class="btn btn-danger">Edit</a><a href="display_category.php?action=delete&id=<?php echo $row['id']?>" class="btn btn-primary ml-2">Delete</a></td>	
+						<td class="align-middle"><a href="edit_product.php?action=edit&id=<?php echo $row['id']?>" class="btn btn-danger">Edit</a><a href="display_category.php?action=delete&id=<?php echo $row['id']?>" class="btn btn-primary ml-2">Delete</a></td>	
 						
 					 </tr>
 					<?php  }  ?>
