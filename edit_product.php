@@ -8,21 +8,26 @@ require_once 'connection.php';
     }
 
     if(isset($_POST['update'])){
-            $id = $_POST['updated_product_id'];
-            $update_product_name = $_POST['update_product_name'];
-            $update_product_price = $_POST['update_product_price'];
-            $update_product_category = $_POST['update_product_category'];
-            $update_product_image = $_FILES['update_product_image'];
-            $product_image_tmp = $_FILES['update_product_image']['tmp_name'];
-            $product_image_name = $_FILES['update_product_image']['name'];
-            $product_folder_path = './product_images/categories/'.$product_image_name;
-            $sql = "UPDATE product SET product_name = '$updated_product_name', product_price = '$updated_product_price', product_category = '$updated_product_category', product_image = '$updated_product_image' WHERE id = $id";
+           $id = $_POST['updated_product_id'];
+           $update_product_name = $_POST['update_product_name'];
+           $update_product_price = $_POST['update_product_price'];
+           $update_product_category = $_POST['update_product_category'];
+           $update_product_image = $_FILES['update_product_image'];
+           $product_image_tmp = $_FILES['update_product_image']['tmp_name'];
+           $product_image_name = $_FILES['update_product_image']['name'];
+           $product_folder_path = './product_images/categories/'.$product_image_name;
             if(!empty($update_product_name) || !empty($update_product_price) || !empty($update_product_category) || !empty($update_product_image)){
-                move_uploaded_file($product_image_tmp, $product_folder_path);
+                 move_uploaded_file($product_image_tmp, $product_folder_path);
+                 $sql = "UPDATE product SET product_name = '$update_product_name', product_price = '$update_product_price', product_category = '$update_product_category', product_image = '$product_image_name' WHERE id = $id";
                 
-                $result = mysqli_query($con, $sql);
+                 if(mysqli_query($con, $sql)){
+                     header('location: display_category.php?page=1');
 
-                header('location: display_category.php?page=1');
+                 }else{
+
+                     echo "Error: " . $sql . "<br>" . mysqli_error($con);
+                 }
+
             }else{
                 echo "Please fill in all the fields";
         }      
